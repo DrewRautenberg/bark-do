@@ -7,11 +7,11 @@ interface Props {
 
 export function TaskList({ tasks }: Props) {
   if (tasks.length === 0) {
-    return <p className="text-sm text-gray-400 py-4">No tasks here. Add one above!</p>;
+    return <p className="text-[13px] text-[#AEAEB2] py-8 text-center">No tasks yet.</p>;
   }
 
   return (
-    <ul>
+    <ul className="divide-y divide-[#E5E5EA]">
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}

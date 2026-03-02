@@ -13,26 +13,26 @@ export function TaskDetail({ task }: Props) {
   }
 
   return (
-    <div className="mt-2 pl-6 pr-2 pb-2 space-y-2 text-sm" onClick={(e) => e.stopPropagation()}>
+    <div className="px-4 pb-4 pt-1 space-y-3" onClick={(e) => e.stopPropagation()}>
       <div className="flex flex-wrap gap-3">
         <label className="flex flex-col gap-1">
-          <span className="text-xs text-gray-500 font-medium">Due date</span>
+          <span className="text-[11px] font-semibold text-[#6C6C70] uppercase tracking-[0.05em]">Due date</span>
           <input
             type="date"
             value={task.dueDate ?? ''}
             onChange={(e) => update({ dueDate: e.target.value || null })}
-            className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-[#C7C7CC] rounded-md px-2.5 py-1.5 text-[13px] text-[#1C1C1E] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/40 focus:border-[#007AFF]"
           />
         </label>
 
         <label className="flex flex-col gap-1">
-          <span className="text-xs text-gray-500 font-medium">Priority</span>
+          <span className="text-[11px] font-semibold text-[#6C6C70] uppercase tracking-[0.05em]">Priority</span>
           <select
             value={task.priority ?? ''}
             onChange={(e) =>
               update({ priority: (e.target.value || null) as Task['priority'] })
             }
-            className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-[#C7C7CC] rounded-md px-2.5 py-1.5 text-[13px] text-[#1C1C1E] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/40 focus:border-[#007AFF]"
           >
             <option value="">None</option>
             <option value="high">High</option>
@@ -42,11 +42,11 @@ export function TaskDetail({ task }: Props) {
         </label>
 
         <label className="flex flex-col gap-1">
-          <span className="text-xs text-gray-500 font-medium">Project</span>
+          <span className="text-[11px] font-semibold text-[#6C6C70] uppercase tracking-[0.05em]">Project</span>
           <select
             value={task.projectId ?? ''}
             onChange={(e) => update({ projectId: e.target.value || null })}
-            className="border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="border border-[#C7C7CC] rounded-md px-2.5 py-1.5 text-[13px] text-[#1C1C1E] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/40 focus:border-[#007AFF]"
           >
             <option value="">Inbox</option>
             {state.projects.map((p) => (
@@ -59,13 +59,13 @@ export function TaskDetail({ task }: Props) {
       </div>
 
       <label className="flex flex-col gap-1">
-        <span className="text-xs text-gray-500 font-medium">Notes</span>
+        <span className="text-[11px] font-semibold text-[#6C6C70] uppercase tracking-[0.05em]">Notes</span>
         <textarea
           value={task.notes}
           onChange={(e) => update({ notes: e.target.value })}
           rows={3}
           placeholder="Add notes..."
-          className="border border-gray-300 rounded px-2 py-1 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="border border-[#C7C7CC] rounded-md px-2.5 py-1.5 text-[13px] text-[#1C1C1E] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/40 focus:border-[#007AFF] placeholder:text-[#AEAEB2] resize-none w-full"
         />
       </label>
     </div>

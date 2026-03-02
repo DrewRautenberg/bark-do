@@ -29,7 +29,7 @@ export function NewProjectForm() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="w-full text-left text-sm text-gray-400 hover:text-gray-600 px-2 py-1 rounded transition-colors"
+        className="w-full text-left text-[13px] text-[#AEAEB2] hover:text-[#6C6C70] px-3 py-1.5 rounded-lg transition-colors"
       >
         + New Project
       </button>
@@ -37,7 +37,7 @@ export function NewProjectForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-1">
+    <form onSubmit={handleSubmit} className="px-3 py-1">
       <input
         type="text"
         value={name}
@@ -45,14 +45,9 @@ export function NewProjectForm() {
         placeholder="Project name"
         autoFocus
         onBlur={() => { setOpen(false); setName(''); }}
-        className="flex-1 border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+        className="w-full border border-[#C7C7CC] rounded-md px-2.5 py-1 text-[13px] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/50 placeholder:text-[#AEAEB2]"
       />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white text-sm px-2 py-1 rounded hover:bg-blue-600"
-      >
-        Add
-      </button>
+      <button type="submit" className="sr-only">Add</button>
     </form>
   );
 }

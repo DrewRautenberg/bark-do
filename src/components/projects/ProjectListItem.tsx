@@ -23,39 +23,39 @@ export function ProjectListItem({ project }: Props) {
 
   if (renaming) {
     return (
-      <form onSubmit={handleRename} className="flex gap-1 px-2 py-1">
+      <form onSubmit={handleRename} className="px-3 py-1">
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
           autoFocus
           onBlur={handleRename}
-          className="flex-1 border border-gray-300 rounded px-2 py-0.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-full border border-[#C7C7CC] rounded-md px-2.5 py-1 text-[13px] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/50"
         />
       </form>
     );
   }
 
   return (
-    <div className="group flex items-center gap-1 rounded hover:bg-gray-100">
+    <div className="group flex items-center rounded-lg hover:bg-black/[0.05] transition-colors">
       <NavLink
         to={`/projects/${project.id}`}
         className={({ isActive }) =>
-          `flex-1 text-sm px-2 py-1 rounded truncate ${isActive ? 'text-blue-600 font-medium' : 'text-gray-700'}`
+          `flex-1 text-[13px] px-3 py-1.5 truncate ${isActive ? 'text-[#007AFF] font-medium' : 'text-[#1C1C1E]'}`
         }
       >
         {project.name}
       </NavLink>
       <button
         onClick={() => { setName(project.name); setRenaming(true); }}
-        className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-gray-600 text-xs px-1 transition-opacity"
+        className="opacity-0 group-hover:opacity-100 text-[#AEAEB2] hover:text-[#6C6C70] text-[11px] px-1.5 transition-opacity"
         aria-label="Rename project"
       >
         ✎
       </button>
       <button
         onClick={() => dispatch({ type: 'DELETE_PROJECT', payload: { id: project.id } })}
-        className="opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 text-lg leading-none px-1 transition-opacity"
+        className="opacity-0 group-hover:opacity-100 text-[#AEAEB2] hover:text-[#FF3B30] text-sm px-1.5 leading-none transition-opacity"
         aria-label="Delete project"
       >
         ×

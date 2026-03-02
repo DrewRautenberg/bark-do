@@ -14,9 +14,13 @@ export function ProjectRoute() {
 
   return (
     <div>
-      <h1 className="text-xl font-bold text-gray-800 mb-4">{project.name}</h1>
-      <AddTaskForm projectId={projectId!} />
-      <TaskList tasks={tasks} />
+      <h1 className="text-[22px] font-semibold text-[#1C1C1E] tracking-[-0.02em] mb-6">{project.name}</h1>
+      <div className="border border-[#E5E5EA] rounded-xl overflow-hidden">
+        <TaskList tasks={tasks} />
+        <div className="border-t border-[#E5E5EA]">
+          <AddTaskForm projectId={projectId!} />
+        </div>
+      </div>
     </div>
   );
 }

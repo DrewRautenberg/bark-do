@@ -7,27 +7,37 @@ export function Sidebar() {
   const { state } = useAppContext();
 
   return (
-    <aside className="w-64 shrink-0 bg-gray-50 border-r border-gray-200 h-screen flex flex-col p-4 gap-4">
-      <div className="text-lg font-bold text-gray-800">Bark-Do</div>
+    <aside className="w-[240px] shrink-0 bg-[#F5F4F2] border-r border-[#E5E5EA] h-screen flex flex-col py-6 px-3 gap-5">
+      <div className="text-[15px] font-semibold text-[#1C1C1E] tracking-[-0.01em] px-3">
+        Bark-Do
+      </div>
 
-      <nav className="flex flex-col gap-1">
+      <nav className="flex flex-col gap-0.5">
         <NavLink
           to="/inbox"
           className={({ isActive }) =>
-            `text-sm px-2 py-1 rounded ${isActive ? 'bg-blue-100 text-blue-700 font-medium' : 'text-gray-700 hover:bg-gray-100'}`
+            `flex items-center gap-2.5 text-[13px] px-3 py-1.5 rounded-lg transition-colors ${
+              isActive
+                ? 'bg-[#007AFF] text-white font-medium'
+                : 'text-[#1C1C1E] hover:bg-black/[0.05]'
+            }`
           }
         >
-          📥 Inbox
+          Inbox
         </NavLink>
       </nav>
 
+      <div className="border-t border-[#E5E5EA]" />
+
       <div className="flex flex-col gap-1">
-        <div className="text-xs text-gray-500 font-semibold uppercase tracking-wider px-2">
+        <div className="text-[11px] font-semibold text-[#6C6C70] uppercase tracking-[0.06em] px-3 mb-1">
           Projects
         </div>
-        {state.projects.map((p) => (
-          <ProjectListItem key={p.id} project={p} />
-        ))}
+        <div className="flex flex-col gap-0.5">
+          {state.projects.map((p) => (
+            <ProjectListItem key={p.id} project={p} />
+          ))}
+        </div>
         <NewProjectForm />
       </div>
     </aside>

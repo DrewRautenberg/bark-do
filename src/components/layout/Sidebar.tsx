@@ -7,6 +7,7 @@ import { NewProjectForm } from '../projects/NewProjectForm';
 export function Sidebar() {
   const { state } = useAppContext();
   const { signOut } = useAuth();
+  const inboxCount = state.tasks.filter((t) => t.projectId === null && !t.done).length;
 
   return (
     <aside className="w-[240px] shrink-0 bg-[#F5F4F2] border-r border-[#E5E5EA] h-screen flex flex-col py-6 px-3 gap-5">
@@ -25,7 +26,16 @@ export function Sidebar() {
             }`
           }
         >
-          Inbox
+          {({ isActive }) => (
+            <>
+              Inbox
+              {inboxCount > 0 && (
+                <span className={`ml-auto text-[12px] ${isActive ? 'text-white/70' : 'text-[#1C1C1E]'}`}>
+                  {inboxCount}
+                </span>
+              )}
+            </>
+          )}
         </NavLink>
       </nav>
 

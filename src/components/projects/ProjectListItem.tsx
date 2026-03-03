@@ -8,7 +8,8 @@ interface Props {
 }
 
 export function ProjectListItem({ project }: Props) {
-  const { dispatch } = useAppContext();
+  const { state, dispatch } = useAppContext();
+  const count = state.tasks.filter((t) => t.projectId === project.id && !t.done).length;
   const [renaming, setRenaming] = useState(false);
   const [name, setName] = useState(project.name);
 
@@ -41,10 +42,19 @@ export function ProjectListItem({ project }: Props) {
       <NavLink
         to={`/projects/${project.id}`}
         className={({ isActive }) =>
-          `flex-1 text-[13px] px-3 py-1.5 truncate ${isActive ? 'text-[#007AFF] font-medium' : 'text-[#1C1C1E]'}`
+          `flex-1 flex items-center text-[13px] px-3 py-1.5 min-w-0 ${isActive ? 'text-[#007AFF] font-medium' : 'text-[#1C1C1E]'}`
         }
       >
-        {project.name}
+        {({ isActive }) => (
+          <>
+            <span className="truncate">{project.name}</span>
+            {count > 0 && (
+              <span className={`ml-auto pl-2 text-[12px] shrink-0 ${isActive ? 'text-[#007AFF]/70' : 'text-[#1C1C1E]'}`}>
+                {count}
+              </span>
+            )}
+          </>
+        )}
       </NavLink>
       <button
         onClick={() => { setName(project.name); setRenaming(true); }}

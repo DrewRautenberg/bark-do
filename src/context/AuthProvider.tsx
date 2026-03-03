@@ -22,12 +22,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function signIn(email: string, password: string): Promise<string | null> {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    return error?.message ?? null;
+    return error ? (error.message || 'Sign in failed') : null;
   }
 
   async function signUp(email: string, password: string): Promise<string | null> {
     const { error } = await supabase.auth.signUp({ email, password });
-    return error?.message ?? null;
+    return error ? (error.message || 'Sign up failed') : null;
   }
 
   async function signOut(): Promise<void> {

@@ -18,7 +18,7 @@ export function ProjectRoute() {
       <div className="border border-[#E5E5EA] rounded-xl overflow-hidden">
         <TaskList tasks={tasks} />
         <div className="border-t border-[#E5E5EA]">
-          <AddTaskForm projectId={projectId!} />
+          <AddTaskForm projectId={project.id} />
         </div>
       </div>
     </div>

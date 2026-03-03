@@ -19,6 +19,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   const prevState = useRef<AppState>(initialState);
   const lastAction = useRef<Action | null>(null);
+  const stateRef = useRef<AppState>(initialState);
+  stateRef.current = state;
 
   // Load data when user changes (login / logout)
   useEffect(() => {
@@ -33,10 +35,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   // Wrap dispatch to record previous state and action before each update
   const dispatch = useCallback((action: Action) => {
-    prevState.current = state;
+    prevState.current = stateRef.current;
     lastAction.current = action;
     rawDispatch(action);
-  }, [state]);
+  }, []);
 
   // After each state change, sync the last action to Supabase
   useEffect(() => {

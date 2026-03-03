@@ -9,7 +9,7 @@ export function Sidebar() {
   return (
     <aside className="w-[240px] shrink-0 bg-[#F5F4F2] border-r border-[#E5E5EA] h-screen flex flex-col py-6 px-3 gap-5">
       <div className="text-[15px] font-semibold text-[#1C1C1E] tracking-[-0.01em] px-3">
-        Bark-Do
+        Bark Do
       </div>
 
       <nav className="flex flex-col gap-0.5">

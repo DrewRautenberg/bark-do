@@ -1,10 +1,12 @@
 import { NavLink } from 'react-router';
 import { useAppContext } from '../../context/AppContext';
+import { useAuth } from '../../context/AuthContext';
 import { ProjectListItem } from '../projects/ProjectListItem';
 import { NewProjectForm } from '../projects/NewProjectForm';
 
 export function Sidebar() {
   const { state } = useAppContext();
+  const { signOut } = useAuth();
 
   return (
     <aside className="w-[240px] shrink-0 bg-[#F5F4F2] border-r border-[#E5E5EA] h-screen flex flex-col py-6 px-3 gap-5">
@@ -39,6 +41,15 @@ export function Sidebar() {
           ))}
         </div>
         <NewProjectForm />
+      </div>
+
+      <div className="mt-auto">
+        <button
+          onClick={signOut}
+          className="w-full text-left text-[13px] text-[#6C6C70] px-3 py-1.5 rounded-lg hover:bg-black/[0.05] transition-colors"
+        >
+          Sign out
+        </button>
       </div>
     </aside>
   );

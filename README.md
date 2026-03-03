@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# Bark Do
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A focused task manager with projects, priorities, and per-user data persistence.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite 7](https://vite.dev) + [React](https://react.dev) + TypeScript
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [React Router v7](https://reactrouter.com)
+- [Supabase](https://supabase.com) — Postgres database + email/password auth
 
-## React Compiler
+## Local setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Install dependencies
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Configure environment variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+cp .env.example .env.local
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Open `.env.local` and fill in your Supabase project URL and anon key (found in **Project Settings > API**):
+
+```
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-public-key
+```
+
+### 3. Set up Supabase
+
+1. Create a project at [supabase.com](https://supabase.com)
+2. In **Auth > Providers > Email**, disable **Confirm email** (recommended for local dev)
+3. Run the following SQL in the **SQL Editor**:
+
+```sql
+create table public.projects (
+  id          text        primary key,
+  user_id     uuid        not null references auth.users(id) on delete cascade,
+  name        text        not null,
+  created_at  timestamptz not null default now()
+);
+
+create table public.tasks (
+  id          text        primary key,
+  user_id     uuid        not null references auth.users(id) on delete cascade,
+  project_id  text        references public.projects(id) on delete set null,
+  title       text        not null,
+  done        boolean     not null default false,
+  priority    text        check (priority in ('high', 'medium', 'low')),
+  due_date    text,
+  notes       text        not null default '',
+  created_at  timestamptz not null default now()
+);
+
+create index projects_user_id_idx on public.projects(user_id);
+create index tasks_user_id_idx    on public.tasks(user_id);
+create index tasks_project_id_idx on public.tasks(project_id);
+
+alter table public.projects enable row level security;
+alter table public.tasks    enable row level security;
+
+create policy "projects: all own" on public.projects for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+create policy "tasks: all own"    on public.tasks    for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+```
+
+## Development
+
+```bash
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
 ```

@@ -23,11 +23,11 @@ export function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F4F2] flex items-center justify-center">
-      <div className="bg-white rounded-2xl shadow-sm border border-[#E5E5EA] w-full max-w-sm p-8 flex flex-col gap-6">
+    <div className="min-h-screen bg-[#F5F4F2] dark:bg-[#1C1C1E] flex items-center justify-center">
+      <div className="bg-white dark:bg-black rounded-2xl shadow-sm border border-[#E5E5EA] dark:border-[#3A3A3C] w-full max-w-sm p-8 flex flex-col gap-6">
         <div className="flex flex-col gap-1">
-          <h1 className="text-[22px] font-semibold text-[#1C1C1E] tracking-[-0.02em]">Bark Do</h1>
-          <p className="text-[13px] text-[#6C6C70]">
+          <h1 className="text-[22px] font-semibold text-[#1C1C1E] dark:text-[#F5F5F7] tracking-[-0.02em]">Bark Do</h1>
+          <p className="text-[13px] text-[#6C6C70] dark:text-[#98989D]">
             {isSignUp ? 'Create an account to get started.' : 'Sign in to your account.'}
           </p>
         </div>
@@ -39,7 +39,7 @@ export function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-3 py-2 rounded-lg border border-[#E5E5EA] text-[14px] text-[#1C1C1E] placeholder:text-[#AEAEB2] focus:outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20 transition-colors"
+            className="w-full px-3 py-2 rounded-lg border border-[#E5E5EA] dark:border-[#3A3A3C] text-[14px] text-[#1C1C1E] dark:text-[#F5F5F7] placeholder:text-[#AEAEB2] dark:placeholder:text-[#636366] bg-white dark:bg-[#1C1C1E] focus:outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20 transition-colors"
           />
           <input
             type="password"
@@ -47,7 +47,7 @@ export function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-3 py-2 rounded-lg border border-[#E5E5EA] text-[14px] text-[#1C1C1E] placeholder:text-[#AEAEB2] focus:outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20 transition-colors"
+            className="w-full px-3 py-2 rounded-lg border border-[#E5E5EA] dark:border-[#3A3A3C] text-[14px] text-[#1C1C1E] dark:text-[#F5F5F7] placeholder:text-[#AEAEB2] dark:placeholder:text-[#636366] bg-white dark:bg-[#1C1C1E] focus:outline-none focus:border-[#007AFF] focus:ring-2 focus:ring-[#007AFF]/20 transition-colors"
           />
 
           {error && (

@@ -11,7 +11,7 @@ export function TaskList({ tasks }: Props) {
   }
 
   return (
-    <ul className="divide-y divide-[#E5E5EA]">
+    <ul className="divide-y divide-[#E5E5EA] dark:divide-[#3A3A3C]">
       {tasks.map((task) => (
         <TaskItem key={task.id} task={task} />
       ))}

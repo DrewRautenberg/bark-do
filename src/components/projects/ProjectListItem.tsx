@@ -31,25 +31,25 @@ export function ProjectListItem({ project }: Props) {
           onChange={(e) => setName(e.target.value)}
           autoFocus
           onBlur={handleRename}
-          className="w-full border border-[#C7C7CC] rounded-md px-2.5 py-1 text-[13px] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/50"
+          className="w-full border border-[#C7C7CC] dark:border-[#48484A] rounded-md px-2.5 py-1 text-[13px] text-[#1C1C1E] dark:text-[#F5F5F7] bg-white dark:bg-[#2C2C2E] focus:outline-none focus:ring-2 focus:ring-[#007AFF]/50"
         />
       </form>
     );
   }
 
   return (
-    <div className="group flex items-center rounded-lg hover:bg-black/[0.05] transition-colors">
+    <div className="group flex items-center rounded-lg hover:bg-black/[0.05] dark:hover:bg-white/[0.08] transition-colors">
       <NavLink
         to={`/projects/${project.id}`}
         className={({ isActive }) =>
-          `flex-1 flex items-center text-[13px] px-3 py-1.5 min-w-0 ${isActive ? 'text-[#007AFF] font-medium' : 'text-[#1C1C1E]'}`
+          `flex-1 flex items-center text-[13px] px-3 py-1.5 min-w-0 ${isActive ? 'text-[#007AFF] font-medium' : 'text-[#1C1C1E] dark:text-[#F5F5F7]'}`
         }
       >
         {({ isActive }) => (
           <>
             <span className="truncate">{project.name}</span>
             {count > 0 && (
-              <span className={`ml-auto pl-2 text-[12px] shrink-0 ${isActive ? 'text-[#007AFF]/70' : 'text-[#1C1C1E]'}`}>
+              <span className={`ml-auto pl-2 text-[12px] shrink-0 ${isActive ? 'text-[#007AFF]/70' : 'text-[#1C1C1E] dark:text-[#F5F5F7]'}`}>
                 {count}
               </span>
             )}

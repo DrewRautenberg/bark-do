@@ -14,7 +14,7 @@ export function ProjectRoute() {
 
   return (
     <div>
-      <h1 className="text-[22px] font-semibold text-[#1C1C1E] tracking-[-0.02em] mb-6">{project.name}</h1>
+      <h1 className="text-[22px] font-semibold text-[#1C1C1E] dark:text-white tracking-[-0.02em] mb-6">{project.name}</h1>
       <div className="border border-[#E5E5EA] rounded-xl overflow-hidden">
         <TaskList tasks={tasks} />
         <div className="border-t border-[#E5E5EA]">

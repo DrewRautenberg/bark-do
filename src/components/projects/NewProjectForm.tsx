@@ -29,7 +29,7 @@ export function NewProjectForm() {
     return (
       <button
         onClick={() => setOpen(true)}
-        className="w-full text-left text-[13px] text-[#AEAEB2] hover:text-[#6C6C70] px-3 py-1.5 rounded-lg transition-colors"
+        className="w-full text-left text-[13px] text-[#AEAEB2] dark:text-[#636366] hover:text-[#6C6C70] dark:hover:text-[#98989D] px-3 py-1.5 rounded-lg transition-colors"
       >
         + New Project
       </button>
@@ -45,7 +45,7 @@ export function NewProjectForm() {
         placeholder="Project name"
         autoFocus
         onBlur={() => { setOpen(false); setName(''); }}
-        className="w-full border border-[#C7C7CC] rounded-md px-2.5 py-1 text-[13px] bg-white focus:outline-none focus:ring-2 focus:ring-[#007AFF]/50 placeholder:text-[#AEAEB2]"
+        className="w-full border border-[#C7C7CC] dark:border-[#48484A] rounded-md px-2.5 py-1 text-[13px] text-[#1C1C1E] dark:text-[#F5F5F7] bg-white dark:bg-[#2C2C2E] focus:outline-none focus:ring-2 focus:ring-[#007AFF]/50 placeholder:text-[#AEAEB2] dark:placeholder:text-[#636366]"
       />
       <button type="submit" className="sr-only">Add</button>
     </form>

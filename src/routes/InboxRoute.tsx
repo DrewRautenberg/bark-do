@@ -4,7 +4,7 @@ import { TaskList } from '../components/tasks/TaskList';
 
 export function InboxRoute() {
   const { state } = useAppContext();
-  const tasks = state.tasks.filter((t) => t.projectId === null);
+  const tasks = state.tasks.filter((t) => t.projectId === null && !t.done);
 
   return (
     <div>

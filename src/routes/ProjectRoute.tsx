@@ -10,7 +10,7 @@ export function ProjectRoute() {
   const project = state.projects.find((p) => p.id === projectId);
   if (!project) return <Navigate to="/inbox" replace />;
 
-  const tasks = state.tasks.filter((t) => t.projectId === projectId);
+  const tasks = state.tasks.filter((t) => t.projectId === projectId && !t.done);
 
   return (
     <div>

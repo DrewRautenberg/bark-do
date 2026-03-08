@@ -10,6 +10,7 @@ export function Sidebar() {
   const { signOut } = useAuth();
   const [isDark, toggleDark] = useDarkMode();
   const inboxCount = state.tasks.filter((t) => t.projectId === null && !t.done).length;
+  const logCount = state.tasks.filter((t) => t.done).length;
 
   return (
     <aside className="w-[240px] shrink-0 bg-[#F5F4F2] dark:bg-[#1C1C1E] border-r border-[#E5E5EA] dark:border-[#3A3A3C] h-screen flex flex-col py-6 px-3 gap-5">
@@ -34,6 +35,26 @@ export function Sidebar() {
               {inboxCount > 0 && (
                 <span className={`ml-auto text-[12px] ${isActive ? 'text-white/70' : 'text-[#1C1C1E] dark:text-[#F5F5F7]'}`}>
                   {inboxCount}
+                </span>
+              )}
+            </>
+          )}
+        </NavLink>
+        <NavLink
+          to="/log"
+          className={({ isActive }) =>
+            `flex items-center gap-2.5 text-[13px] px-3 py-1.5 rounded-lg transition-colors ${
+              isActive
+                ? 'bg-[#007AFF] text-white font-medium'
+                : 'text-[#1C1C1E] dark:text-[#F5F5F7] hover:bg-black/[0.05] dark:hover:bg-white/[0.08]'
+            }`
+          }
+        >
+          {({ isActive }) => (
+            <>
+              Log
+              {logCount > 0 && (
+                <span className={`ml-auto text-[12px] ${isActive ? 'text-white/70' : 'text-[#1C1C1E] dark:text-[#F5F5F7]'}`}>
                 </span>
               )}
             </>
